@@ -13,5 +13,7 @@ spec:
     repoURL: https://github.com/vixus0/gitops-examples
     targetRevision: HEAD
   syncPolicy:
+    automated:
+      selfHeal: true
     syncOptions:
       - CreateNamespace=true
