@@ -5,7 +5,7 @@ metadata:
   name: nginx
 spec:
   rules:
-    - host: <valid-domain-here>
+    - host: nginx-dod-amsterdam-w01-s027.playground.nws.netways.de
       http:
         paths:
           - path: /
