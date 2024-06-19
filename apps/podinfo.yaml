@@ -1,0 +1,35 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: podinfo
+  namespace: argocd
+spec:
+  destination:
+    namespace: podinfo
+    name: in-cluster
+  project: cli-apps
+  source:
+    chart: podinfo
+    helm:
+      parameters:
+        - name: replicaCount
+          value: "2"
+        - name: ui.message
+          value: Podinfo + ArgoCD = ✨Demo Time✨
+        - name: ingress.enabled
+          value: "true"
+        - name: ingress.className
+          value: contour
+        - name: ingress.hosts[0].host
+          value: podinfo-dod-amsterdam-w01-s027.playground.nws.netways.de
+        - name: ingress.hosts[0].paths[0].path
+          value: "/"
+        - name: ingress.hosts[0].paths[0].pathType
+          value: "ImplementationSpecific"
+    repoURL: ghcr.io/stefanprodan/charts
+    targetRevision: 6.6.2
+  syncPolicy:
+    automated:
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

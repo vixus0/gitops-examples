@@ -1,16 +1,17 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: parent-app
+  name: first-gitops-app
   namespace: argocd
 spec:
   destination:
-    namespace: argocd
+    namespace: first-gitops-app
     name: in-cluster
   project: default
   source:
+    path: first-gitops-app
     repoURL: https://github.com/vixus0/gitops-examples
     targetRevision: HEAD
-    path: apps
   syncPolicy:
-    automated: {}
+    syncOptions:
+      - CreateNamespace=true
