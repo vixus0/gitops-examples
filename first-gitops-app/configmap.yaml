@@ -17,7 +17,8 @@ data:
         </style>
       </head>
       <body>
-        <h1>Welcome to Our First Example!</h1>
+        <h1>Welcome to cat facts!</h1>
         <p>This webserver has been deployed by ArgoCD, isn&apos;t that neat?</p>
+        <img src="https://cdn2.thecatapi.com/images/YYIPhGhCb.jpg">
       </body>
     </html>
