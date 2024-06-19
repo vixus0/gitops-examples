@@ -11,13 +11,11 @@ spec:
           - list:
               elements:
                 - team: team-green
-                  namespace: team-green-mon
                 - team: team-blue
-                  namespace: blue-monitoring
           - git:
               directories:
                 - path: monitoring-appset/*
-              repoURL: https://github.com/mocdaniel/gitops-examples
+              repoURL: https://github.com/vixus0/gitops-examples
               revision: HEAD
   goTemplate: true
   template:
@@ -26,7 +24,7 @@ spec:
     spec:
       project: team-monitoring
       source:
-        repoURL: https://github.com/mocdaniel/gitops-examples
+        repoURL: https://github.com/vixus0/gitops-examples
         targetRevision: HEAD
         path: "{{ .path.path }}"
         helm:
@@ -34,7 +32,7 @@ spec:
             - values.yaml
       destination:
         name: in-cluster
-        namespace: "{{ .namespace }}" # this is dangerous!
+        namespace: "{{ .team }}" # this is dangerous!
       syncPolicy:
         syncOptions:
           - CreateNamespace=true
